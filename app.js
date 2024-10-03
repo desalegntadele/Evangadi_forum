@@ -23,6 +23,16 @@ app.use('/api/users', usersRoutes);
 //Questions
 app.use('/api/questions', auth, questionsRoutes);
 
+// 3 answer route middleware
+// answer routes middleware file
+const answerRoute=require('./routes/answerRoute')
+app.use("/api/answer", auth, answerRoute);
+
+
+
+
+
+
 (async () => {
   try {
     const result = await connection.execute("select 'test'");
