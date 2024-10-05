@@ -11,7 +11,14 @@ const { postQuestion } = require("../controller/question.controller");
 // Post question route
 router.post("/question", auth, postQuestion);
 
+
+
+
+//get single question route 
+
+const { getSingleQuestion } = require("../controller/question.controller");
+// Get Single Question
+router.get("/:question_id",auth, getSingleQuestion);
+
 module.exports = router;
-
-
 
