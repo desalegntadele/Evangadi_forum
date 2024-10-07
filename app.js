@@ -1,27 +1,31 @@
-const express = require('express');
+require("dotenv").config()
+const express = require("express");
 
 const app = express();
 const port = 5000;
 
-//database connection
+// Database connection
+const connection = require("./database/db.config");
 
-const connection = require('./database/db.config');
+// Users middleware router file
+const usersRoutes = require("./routes/users.routes");
 
-//users middleware router file
-const usersRoutes = require('./routes/users.routes');
+// Questions middleware router file
+const questionsRoutes = require("./routes/question.routes");
+const answerRoutes = require("./routes/answer.routes");
+const auth = require("./middleware/auth.middleware");
 
-//questions middleware router file
-const questionsRoutes = require('./routes/question.routes');
-const auth = require('./middleware/auth.middleware');
-
-//json middleware
+// JSON middleware
 app.use(express.json());
 
-//users middleware
-app.use('/api/users', usersRoutes);
+// Users middleware
+app.use("/api/users", usersRoutes);
 
-//Questions
-app.use('/api/questions', auth, questionsRoutes);
+// Questions
+app.use("/api/questions", auth, questionsRoutes);
+
+// Answers
+app.use("/api/answers", auth, answerRoutes); 
 
 // 3 answer route middleware
 // answer routes middleware file
@@ -35,10 +39,10 @@ app.use("/api/answer", auth, answerRoute);
 
 (async () => {
   try {
-    const result = await connection.execute("select 'test'");
+    const result = await connection.execute("SELECT 'test'");
 
     await app.listen(port);
-    console.log('Database connection established:)');
+    console.log("Database connection established:)");
     console.log(`Listening on ${port}: http://localhost:${port}`);
   } catch (err) {
     console.error(err.message);
