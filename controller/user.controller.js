@@ -99,10 +99,10 @@ const login = async function (req, res) {
 
     //generate token
     const { username, user_id } = user[0];
-    const token = jwt.sign({ username, user_id }, 'secret', {
+    const token = jwt.sign({ username, user_id }, process.env.JWT_SECRET, {
       expiresIn: '1d',
     });
-    res.status(StatusCodes.OK).json({ msg: 'user login successful', token });
+    res.status(StatusCodes.OK).json({ msg: 'user login successful', token,username });
   } catch (err) {
     console.error(err.message);
   }

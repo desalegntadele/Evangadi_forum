@@ -1,7 +1,11 @@
-const express = require('express');
 
+require("dotenv").config();
+const express = require('express');
 const app = express();
 const port = 5000;
+const cors = require("cors");
+
+app.use(cors());
 
 //database connection
 
@@ -25,8 +29,8 @@ app.use('/api/questions', auth, questionsRoutes);
 
 // 3 answer route middleware
 // answer routes middleware file
-const answerRoute=require('./routes/answerRoute')
-app.use("/api/answer", auth, answerRoute);
+const answerRoute=require('./routes/answers.routes')
+app.use("/api/answer", answerRoute);
 
 
 
@@ -36,6 +40,7 @@ app.use("/api/answer", auth, answerRoute);
 (async () => {
   try {
     const result = await connection.execute("select 'test'");
+ 
 
     await app.listen(port);
     console.log('Database connection established:)');
