@@ -12,7 +12,6 @@ const connection = mysql2.createPool({
   connectionLimit: 10, // Maximum number of connections allowed
 });
 
-
 //connection test
 // connection.execute(`select 'test'`, (err, result) => {
 //   if (err) return console.error(err.message);

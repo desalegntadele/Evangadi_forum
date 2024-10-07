@@ -1,9 +1,7 @@
-
-
 // Import necessary modules
-const { StatusCodes } = require("http-status-codes");
-const connection = require("../database/db.config");
-const uuidv4 = require("uuid").v4;
+const { StatusCodes } = require('http-status-codes');
+const connection = require('../database/db.config');
+const uuidv4 = require('uuid').v4;
 
 /********************* Create a new question  *************************************/
 const postQuestion = async (req, res) => {
@@ -13,8 +11,8 @@ const postQuestion = async (req, res) => {
   // Validate request body
   if (!title || !description || !tag) {
     return res.status(StatusCodes.BAD_REQUEST).json({
-      error: "Bad Request",
-      message: "Please provide all required fields",
+      error: 'Bad Request',
+      message: 'Please provide all required fields',
     });
   }
 
@@ -32,15 +30,15 @@ const postQuestion = async (req, res) => {
 
     // Return success response
     res.status(StatusCodes.CREATED).json({
-      message: "Question created successfully",
+      message: 'Question created successfully',
     });
   } catch (error) {
     console.error(error.message);
 
     // Return internal server error response
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      error: "Internal Server Error",
-      message: "An unexpected error occurred.",
+      error: 'Internal Server Error',
+      message: 'An unexpected error occurred.',
     });
   }
 };
@@ -60,8 +58,8 @@ const allQuestions = async (req, res) => {
     // Handle case where no questions are found
     if (!Array.isArray(questions) || questions.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({
-        error: "Not Found",
-        message: "No questions found.",
+        error: 'Not Found',
+        message: 'No questions found.',
       });
     }
 
@@ -72,15 +70,11 @@ const allQuestions = async (req, res) => {
 
     // Handle server error
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      error: "Internal Server Error",
-      message: "An unexpected error occurred.",
+      error: 'Internal Server Error',
+      message: 'An unexpected error occurred.',
     });
   }
 };
-
-
-
-
 
 const getSingleQuestion = async (req, res) => {
   const { question_id } = req.params;
@@ -95,7 +89,7 @@ const getSingleQuestion = async (req, res) => {
     // If question does not exist
     if (question.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({
-        error: "Not Found",
+        error: 'Not Found',
         message: `Question with ID ${question_id} not found`,
       });
     }
@@ -113,27 +107,14 @@ const getSingleQuestion = async (req, res) => {
         created_at: created_at, // Generated timestamp
       },
     });
-
-    
   } catch (error) {
     // Handle any other errors (like DB connection issues)
     console.error(error.message);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      error: "Internal Server Error",
-      message: "An unexpected error occurred.",
+      error: 'Internal Server Error',
+      message: 'An unexpected error occurred.',
     });
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-module.exports = { postQuestion,getSingleQuestion,allQuestions };
+module.exports = { postQuestion, getSingleQuestion, allQuestions };
