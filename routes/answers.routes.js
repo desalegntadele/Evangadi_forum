@@ -2,15 +2,18 @@ const express = require("express");
 const router = express.Router();
 
 //import all the answer controllers
-const { addAnswer, getAnswers } = require("../controller/answer.controller");
+const { postAnswer, answerForQuestion } = require("../controller/answer.controller");
+  
 
+const auth = require("../middleware/auth.middleware");
 
 //answer route
 
-router.post("/addanswer", addAnswer);
+router.post("/addanswer",auth, postAnswer);
 
-router.get("/allanswers/:questionid", getAnswers);
+router.get("/:questionid",auth, answerForQuestion);
 
 //export the route
 
 module.exports = router;
+
