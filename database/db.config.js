@@ -6,11 +6,12 @@ dotenv.config();
 //access the database
 const connection = mysql2.createPool({
   host: 'localhost',
-  user: 'Team-2',
+  user: process.env.USER,
   password: process.env.DATABASE_PASSWORD,
-  database: 'evangadi_forum',
+  database: process.env.DATABASE,
   connectionLimit: 10, // Maximum number of connections allowed
 });
+
 
 //connection test
 // connection.execute(`select 'test'`, (err, result) => {
