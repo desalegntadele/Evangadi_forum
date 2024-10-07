@@ -11,7 +11,7 @@ const auth = require("../middleware/auth.middleware");
 
 router.post("/addanswer",auth, postAnswer);
 
-router.get("/:questionid",auth, answerForQuestion);
+router.get("/:question_id",auth, answerForQuestion);
 
 //export the route
 

@@ -33,7 +33,7 @@ const answerForQuestion = async function (req, res) {
   } catch (err) {
     console.error("Error fetching answers:", err); // Improved logging
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      error: "Internal Server Error",
+      error: err.message,
       message: "An unexpected error occurred.",
     });
   }
@@ -44,7 +44,7 @@ const answerForQuestion = async function (req, res) {
 // Post an answer to a question
 const postAnswer = async function (req, res) {
   const { question_id, answer } = req.body;
-  const user_id = req.user // Assuming user_id is extracted from the authentication middleware
+  const {user_id} = req.user // Assuming user_id is extracted from the authentication middleware
 
   // Validate answer input
   if (!answer) {
