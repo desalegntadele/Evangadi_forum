@@ -12,13 +12,13 @@ const {
 } = require('../controller/question.controller');
 
 // Post question route
-router.post('/question', auth, postQuestion);
+router.post('/', postQuestion);
 
 //get single question route
 
 // Get Single Question
-router.get('/:question_id', auth, getSingleQuestion);
+router.get('/:question_id', getSingleQuestion);
 
-router.get('/', auth, allQuestions);
+router.get('/', allQuestions);
 
 module.exports = router;

@@ -6,9 +6,9 @@ dotenv.config();
 //access the database
 const connection = mysql2.createPool({
   host: 'localhost',
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
   connectionLimit: 10, // Maximum number of connections allowed
 });
 
