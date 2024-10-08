@@ -1,16 +1,15 @@
-import React from 'react'
-import { useContext } from 'react'
-import {AppState} from "../App"
+import React, { useContext } from "react";
+import { AppState } from "../App";
 
 function Home() {
-  const {user} =useContext(AppState)
+  const { user } = useContext(AppState);
+
   return (
     <div>
-      Home
-
-      <h2>welcom: {user.username}</h2>
+      <h1>Home</h1>
+      <h2>Welcome: {user.username}</h2>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
