@@ -1,41 +1,53 @@
-import { useNavigate, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import { useEffect,useState,createContext } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { useEffect, useState, createContext } from "react";
 import axios from "./axiosConfig";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+// import AskQuestion from "./pages/AskQuestions/AskQuestion";
+// import AnswerQuestion from "./pages/AnswerQuestion";
+// import DashBoard from "./pages/DashBoard";
 
-export const AppState=createContext();
+export const AppState = createContext();
 
-function App() {
-  const [user, setuser] = useState({});
-  const token=localStorage.getItem("token")
-  const navigate=useNavigate()
-  async function checkUser() {
+const App = () => {
+  const [user, setUser] = useState({});
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  const checkUser = async () => {
     try {
-    const {data}=  await axios.get("/users/check",{
-        headers:{
-          Authorization:"Bearer" +token
-        }
+      const { data } = await axios.get("/users/check", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       });
-   setuser(data)
+      setUser(data);
     } catch (error) {
       console.log(error.response);
-      navigate("?login")
+      navigate("/");
     }
-  }
+  };
+
   useEffect(() => {
     checkUser();
   }, []);
+
   return (
-    <AppState.Provider value={{user,setuser}}>
+    <AppState.Provider value={{ user, setUser }}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        
+        {/* <Route path="ask-question" element={<AskQuestion />} /> */}
+        {/* <Route path="dashboard" element={<DashBoard />} /> */}
+        {/* <Route path="ask-question" element={<AskQuestion />} />
+        <Route path="/answer-q/:questionId" element={<AnswerQuestion />} />
+        <Route path="dashboard" element={<DashBoard />} /> */}
       </Routes>
     </AppState.Provider>
   );
-}
+};
 
 export default App;
