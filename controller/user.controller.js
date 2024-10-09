@@ -12,7 +12,7 @@ const { StatusCodes } = require('http-status-codes');
 const register = async function (req, res) {
   const { username, first_name, last_name, email, password } = req?.body;
   const flag = !username || !first_name || !last_name || !email || !password;
-
+  console.log("Received body:", req.body); 
   //Guard value
   if (flag)
     return res
@@ -105,9 +105,7 @@ const login = async function (req, res) {
     const token = jwt.sign({ username, user_id }, process.env.JWT_SECRET, {
       expiresIn: '1d',
     });
-    res
-      .status(StatusCodes.OK)
-      .json({ msg: 'user login successful', token, username });
+    res.status(StatusCodes.OK).json({ msg: 'user login successful', token, username });
   } catch (err) {
     console.error(err.message);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({

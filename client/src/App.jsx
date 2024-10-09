@@ -10,26 +10,25 @@ import AskQuestion from "./pages/AskQuestion/AskQuestion";
 
 export const AppState = createContext();
 
-const App = () => {
+function App() {
   const [user, setUser] = useState({});
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
-  const checkUser = async () => {
-    try {
-      const { data } = await axios.get("/users/check", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
-      setUser(data);
-    } catch (error) {
-      console.log(error.response);
-      navigate("/");
-    }
-  };
-
   useEffect(() => {
+    async function checkUser() {
+      try {
+        const { data } = await axios.get('/users/check', {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        });
+        setUser(data);
+      } catch (error) {
+        console.log(error.response);
+        navigate('?login');
+      }
+    }
     checkUser();
   }, []);
 
@@ -65,6 +64,6 @@ const App = () => {
       </Routes>
     </AppState.Provider>
   );
-};
+}
 
 export default App;
