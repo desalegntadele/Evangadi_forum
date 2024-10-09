@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import { createContext, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import axios from './axiosConfig';
@@ -23,14 +24,15 @@ function App() {
             Authorization: 'Bearer ' + token,
           },
         });
+        console.log(data);
         setUser(data);
       } catch (error) {
         console.log(error.response);
-        navigate('?login');
+        navigate('/login');
       }
     }
     checkUser();
-  }, []);
+  }, [navigate, token]);
 
   return (
     <AppState.Provider value={{ user, setUser }}>

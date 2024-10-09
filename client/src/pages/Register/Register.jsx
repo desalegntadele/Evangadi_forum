@@ -1,13 +1,14 @@
-import { useRef, useState } from "react";
-import axios from "../../axiosConfig";
-import { Link, useNavigate } from "react-router-dom";
-import "./register.css";
-import LayOut from "../../components/LayOut/LayOut";
+import { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from '../../axiosConfig';
+import About from '../../components/About/About';
+import LayOut from '../../components/LayOut/LayOut';
+import './register.css';
 
 const Register = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState("");
+  const [success, setSuccess] = useState('');
 
   const usernameDom = useRef();
   const firstnameDom = useRef();
@@ -15,7 +16,7 @@ const Register = () => {
   const emailDom = useRef();
   const passwordDom = useRef();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     // const usernameValue=e.target.value
@@ -33,24 +34,24 @@ const Register = () => {
       !passValue
     ) {
       // alert("please provide all required fields !");
-      setError("please provide all required fields !");
+      setError('please provide all required fields !');
       return;
     }
 
     try {
-      await axios.post("/users/register", {
+      await axios.post('/users/register', {
         username: usernameValue,
         first_name: firstValue,
         last_name: lastValue,
         email: emailValue,
         password: passValue,
       });
-      alert("register successfully.please login");
-      navigate("/login");
+      // alert("register successfully.please login");
+      navigate('/login');
     } catch (error) {
       // alert("something went wrong!");
       console.log(error.response);
-      setError("something went wrong!");
+      setError('something went wrong!');
     }
   };
 
@@ -64,9 +65,9 @@ const Register = () => {
               {success && (
                 <p
                   style={{
-                    textAlign: "center",
-                    color: "green",
-                    marginBottom: "13px",
+                    textAlign: 'center',
+                    color: 'green',
+                    marginBottom: '13px',
                   }}
                 >
                   {success}
@@ -75,9 +76,9 @@ const Register = () => {
               {error && (
                 <p
                   style={{
-                    textAlign: "center",
-                    color: "red",
-                    marginBottom: "13px",
+                    textAlign: 'center',
+                    color: 'red',
+                    marginBottom: '13px',
                   }}
                 >
                   {error}
@@ -86,13 +87,13 @@ const Register = () => {
 
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  paddingBottom: "15px",
+                  display: 'flex',
+                  justifyContent: 'center',
+                  paddingBottom: '15px',
                 }}
               >
                 <span>Already have an account?</span>
-                <Link to={"/login"} style={{ marginTop: "0px" }}>
+                <Link to={'/login'} style={{ marginTop: '0px' }}>
                   sign in
                 </Link>
               </div>
@@ -144,31 +145,10 @@ const Register = () => {
                   Register
                 </button>
               </form>
-              <Link to={"/"}>Already have an account</Link>
+              <Link to={'/'}>Already have an account</Link>
             </div>
           </section>
-          <section className="para">
-            <div className="para_container">
-              <Link>About</Link>
-              <div>
-                <h1>Evangadi Networks Q&A</h1>
-              </div>
-              <div>
-                <p>
-                  No matter what stage of life you are in, whether you’re just
-                  starting elementary school or being promoted to CEO of a
-                  Fortune 500 company, you have much to offer to those who are
-                  trying to follow in your footsteps.
-                </p>
-                <p>
-                  Wheather you are willing to share your knowledge or you are
-                  just looking to meet mentors of your own, please start by
-                  joining the network here.
-                </p>
-              </div>
-              <button>How it Works</button>
-            </div>
-          </section>
+          <About />
         </section>
       </div>
     </LayOut>
