@@ -40,14 +40,20 @@ const Home = () => {
   return (
     <LayOut>
       <section className="container">
-        <header className="d-flex justify-content-between mt-5 p-4">
-          <div>
-            <button className="btn btn-primary p-2 fs-4">Ask Question</button>
-          </div>
-          <div>
-            <h4 className="fs-2">Welcome, {user.username}!</h4>
-          </div>
-        </header>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <header className="d-flex justify-content-between mt-5 p-4">
+              <div>
+                <button className="btn btn-primary p-2 fs-4">
+                  Ask Question
+                </button>
+              </div>
+              <div>
+                <h4 className="fs-2">Welcome, {user.username}!</h4>
+              </div>
+            </header>
 
         {isLoading ? (
           <Loading />

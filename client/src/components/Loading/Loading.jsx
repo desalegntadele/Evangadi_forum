@@ -5,7 +5,11 @@ function Loading() {
   return (
     <>
       <div className="loading">
-        <img src={imgLoading} alt="Loading gift animations." />
+        <img
+          className="w-100"
+          src={imgLoading}
+          alt="Loading gift animations."
+        />
       </div>
     </>
   );
