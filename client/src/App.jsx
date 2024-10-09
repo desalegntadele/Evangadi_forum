@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { createContext, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import axios from './axiosConfig';
+import AskQuestion from './pages/AskQuestion/AskQuestion';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
@@ -41,7 +42,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
 
-        {/* <Route path="ask-question" element={<AskQuestion />} /> */}
+        <Route path="ask-question" element={<AskQuestion />} />
         {/* <Route path="dashboard" element={<DashBoard />} /> */}
         {/* <Route path="ask-question" element={<AskQuestion />} />
         <Route path="/answer-q/:questionId" element={<AnswerQuestion />} />

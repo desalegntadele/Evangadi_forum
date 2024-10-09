@@ -23,8 +23,8 @@ const Home = () => {
             Authorization: 'Bearer ' + token,
           },
         });
+        setQuestions(() => data.questions?.reverse());
         setIsLoading(false);
-        setQuestions(() => data.questions);
       } catch (error) {
         setIsLoading(true);
 
@@ -33,27 +33,33 @@ const Home = () => {
       }
     })();
   }, [token]);
-
+  console.log(isLoading);
   return (
     <LayOut>
-      <section className="container">
-        <header className="d-flex justify-content-between mt-5 p-4">
-          <div>
-            <button className="btn btn-primary p-2 fs-4">Ask Question</button>
-          </div>
-          <div>
-            <h4 className="fs-2">Welcome, {user.username}!</h4>
-          </div>
-        </header>
+      {true && <Loading />}
 
+      <section className="container">
         {isLoading ? (
           <Loading />
         ) : (
-          <div className="mt-4">
-            {questions.map((question, i) => (
-              <QuestionList question={question} key={i} />
-            ))}
-          </div>
+          <>
+            <header className="d-flex justify-content-between mt-5 p-4">
+              <div>
+                <button className="btn btn-primary p-2 fs-4">
+                  Ask Question
+                </button>
+              </div>
+              <div>
+                <h4 className="fs-2">Welcome, {user.username}!</h4>
+              </div>
+            </header>
+
+            <div className="mt-4">
+              {questions?.map((question, i) => (
+                <QuestionList question={question} key={i} />
+              ))}
+            </div>
+          </>
         )}
       </section>
     </LayOut>
