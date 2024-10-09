@@ -1,5 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 //database
 const connection = require('../database/db.config');
@@ -100,11 +103,17 @@ const login = async function (req, res) {
     //generate token
     const { username, user_id } = user[0];
     const token = jwt.sign({ username, user_id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
+      expiresIn: '1d',
     });
-    res.status(StatusCodes.OK).json({ msg: 'user login successful', token });
+    res
+      .status(StatusCodes.OK)
+      .json({ msg: 'user login successful', token, username });
   } catch (err) {
     console.error(err.message);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      err: err.message,
+      msg: 'Something went wrong: check your email or password',
+    });
   }
 };
 
