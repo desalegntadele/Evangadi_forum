@@ -1,10 +1,12 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { useEffect, useState, createContext } from "react";
-import axios from "./axiosConfig";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
-import AskQuestion from "./pages/AskQuestion/AskQuestion";
+import 'bootstrap/dist/css/bootstrap.css';
+import { createContext, useEffect, useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import axios from './axiosConfig';
+import AskQuestion from './pages/AskQuestion/AskQuestion';
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+// import AskQuestion from "./pages/AskQuestions/AskQuestion";
 // import AnswerQuestion from "./pages/AnswerQuestion";
 // import DashBoard from "./pages/DashBoard";
 
@@ -23,31 +25,15 @@ function App() {
             Authorization: 'Bearer ' + token,
           },
         });
+        console.log(data);
         setUser(data);
       } catch (error) {
         console.log(error.response);
-        navigate('?login');
+        navigate('/login');
       }
     }
     checkUser();
-  }, []);
-
-
-  //  async function getQuestion() {
-  //    try {
-  //      const { data } = await axios.get("/questions/all-questions", {
-  //        headers: {
-  //          Authorization: "Bearer " + token,
-  //        },
-  //      });
-  //      // console.log(data)
-  //      setQuestion(data); // Assuming data holds the question value
-  //    } catch (error) {
-  //      console.error("Error fetching question:", error);
-  //    }
-  //  }
-
-
+  }, [navigate, token]);
 
   return (
     <AppState.Provider value={{ user, setUser }}>
@@ -55,7 +41,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        
+
         <Route path="ask-question" element={<AskQuestion />} />
         {/* <Route path="dashboard" element={<DashBoard />} /> */}
         {/* <Route path="ask-question" element={<AskQuestion />} />

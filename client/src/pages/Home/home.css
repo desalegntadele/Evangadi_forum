@@ -1,8 +1,7 @@
 .bg {
-    background-color: #f5f5f5;
-        background-image: url("https://www.evangadi.com/themes/humans/assets/images/misc/bg-svg-f.svg");
-        background-repeat: no-repeat;
-        background-size: 100%;
-    
-        /* margin-top: 10px; */
+  background-color: #f5f5f5;
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+  /* margin-top: 10px; */
 }
