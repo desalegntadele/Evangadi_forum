@@ -1,23 +1,31 @@
-require("dotenv").config()
-const express = require("express");
-
+require('dotenv').config();
+const express = require('express');
 const app = express();
 const cors = require("cors")
 app.use(cors())
 const port = 5000;
+const cors = require('cors');
 
-// Database connection
-const connection = require("./database/db.config");
+app.use(cors());
 
-// Users middleware router file
-const usersRoutes = require("./routes/users.routes");
+//database connection
+const connection = require('./database/db.config');
 
 // Questions middleware router file
 const questionsRoutes = require("./routes/question.routes");
 const answerRoutes = require("./routes/answer.routes");
 const auth = require("./middleware/auth.middleware");
 
-// JSON middleware
+//questions middleware router file
+const questionsRoutes = require('./routes/question.routes');
+
+// answer routes middleware file
+const answerRoute = require('./routes/answers.routes');
+
+//authentication middleware router file
+const auth = require('./middleware/auth.middleware');
+
+//json middleware
 app.use(express.json());
 
 // Users middleware
@@ -28,6 +36,9 @@ app.use("/api/questions", auth, questionsRoutes);
 
 // Answers
 app.use("/api/answers", auth, answerRoutes); 
+
+//answer middleware
+app.use('/api/answers', auth, answerRoute);
 
 (async () => {
   try {
