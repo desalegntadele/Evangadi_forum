@@ -26,9 +26,9 @@ const Home = () => {
   return (
     <div className="bg">
       {/* <Login /> */}
-      <Header/>
-      {/* <Register /> */}
-      <Footer/>
+      {/* <Header/> */}
+      <Register />
+      {/* <Footer/> */}
     </div>
   );
 };

@@ -46,6 +46,8 @@
     margin-right: 10px;
     
 }
+
+
 @media (max-width: 768px) {
     .Footer_inner_container {
         justify-content: space-evenly;

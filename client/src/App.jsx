@@ -4,7 +4,7 @@ import axios from "./axiosConfig";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-// import AskQuestion from "./pages/AskQuestions/AskQuestion";
+import AskQuestion from "./pages/AskQuestion/AskQuestion";
 // import AnswerQuestion from "./pages/AnswerQuestion";
 // import DashBoard from "./pages/DashBoard";
 
@@ -33,6 +33,23 @@ const App = () => {
     checkUser();
   }, []);
 
+
+  //  async function getQuestion() {
+  //    try {
+  //      const { data } = await axios.get("/questions/all-questions", {
+  //        headers: {
+  //          Authorization: "Bearer " + token,
+  //        },
+  //      });
+  //      // console.log(data)
+  //      setQuestion(data); // Assuming data holds the question value
+  //    } catch (error) {
+  //      console.error("Error fetching question:", error);
+  //    }
+  //  }
+
+
+
   return (
     <AppState.Provider value={{ user, setUser }}>
       <Routes>
@@ -40,7 +57,7 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         
-        {/* <Route path="ask-question" element={<AskQuestion />} /> */}
+        <Route path="ask-question" element={<AskQuestion />} />
         {/* <Route path="dashboard" element={<DashBoard />} /> */}
         {/* <Route path="ask-question" element={<AskQuestion />} />
         <Route path="/answer-q/:questionId" element={<AnswerQuestion />} />
