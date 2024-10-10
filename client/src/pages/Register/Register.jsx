@@ -46,12 +46,10 @@ const Register = () => {
         email: emailValue,
         password: passValue,
       });
-      // alert("register successfully.please login");
-      navigate('/login');
+      setSuccess('Register successfully. Please login');
+      navigate('/login'); // Redirect to login page after registration
     } catch (error) {
-      // alert("something went wrong!");
-      console.log(error.response);
-      setError('something went wrong!');
+      setError('Something went wrong!');
     }
   };
 
@@ -93,7 +91,7 @@ const Register = () => {
                 }}
               >
                 <span>Already have an account?</span>
-                <Link to={'/login'} style={{ marginTop: '0px' }}>
+                <Link to="/login" style={{ marginTop: '0px' }}>
                   sign in
                 </Link>
               </div>
@@ -145,7 +143,7 @@ const Register = () => {
                   Register
                 </button>
               </form>
-              <Link to={'/'}>Already have an account</Link>
+              <Link to="/login">Already have an account</Link>
             </div>
           </section>
           <About />
