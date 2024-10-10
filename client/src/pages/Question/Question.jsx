@@ -1,9 +1,9 @@
 // src/pages/QuestionPage.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "../axiosConfig";
-import SingleQuestion from "../components/SingleQuestion/SingleQuestion";
-import PostAnswer from "../components/PostAnswer/PostAnswer"; // Import PostAnswer component
+import axios from "../../axiosConfig";
+import SingleQuestion from "../../components/SingleQuestion/SingleQuestion";
+import PostAnswer from "../../components/PostAnswer/PostAnswer"; // Import PostAnswer component
 import classes from "./Question.module.css";
 
 function QuestionPage() {

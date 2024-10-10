@@ -1,8 +1,8 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Register from "./pages/Register"
-import Question from "./pages/Question";
+import Register from "./pages/Register";
+import Question from "./pages/Question/Question";
 import { useEffect, useState, createContext } from "react";
 import axios from "./axiosConfig";
 
@@ -38,7 +38,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/question" element={<Register />} />
-        <Route path="/question/:id" element={<Question/>} /> 
+        <Route path="/question/:id" element={<Question />} />
       </Routes>
     </AppState.Provider>
   );
