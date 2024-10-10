@@ -12,11 +12,11 @@ const Home = () => {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const token = localStorage.getItem('token');
         const { data } = await axiosBase.get('/questions', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -35,7 +35,7 @@ const Home = () => {
     };
 
     fetchQuestions();
-  }, []);
+  }, [token]);
 
   return (
     <LayOut>

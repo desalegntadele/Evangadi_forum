@@ -19,31 +19,36 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function checkUser() {
-      try {
-        const { data } = await axios.get('/users/check', {
-          headers: {
-            Authorization: 'Bearer ' + token,
-          },
-        });
-        console.log(data);
-        setUser(data);
-      } catch (error) {
-        console.log(error.response);
-        navigate('/login');
+    const publicRoutes = ['/login', '/register'];
+    const currentPath = window.location.pathname;
+
+    // Don't check authentication on public routes like login and register
+    if (!publicRoutes.includes(currentPath)) {
+      async function checkUser() {
+        try {
+          const { data } = await axios.get('/users/check', {
+            headers: {
+              Authorization: 'Bearer ' + token,
+            },
+          });
+          setUser(data);
+        } catch (error) {
+          console.log(error.response);
+          navigate('/login');
+        }
       }
+      checkUser();
     }
-    checkUser();
   }, [navigate, token]);
 
   return (
     <AppState.Provider value={{ user, setUser }}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="questions/:id" element={<QuestionPage />} />
-        <Route path="ask-question" element={<AskQuestion />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/questions/:id" element={<QuestionPage />} />
+        <Route path="/ask-question" element={<AskQuestion />} />
         {/* <Route path="dashboard" element={<DashBoard />} /> */}
         {/* <Route path="ask-question" element={<AskQuestion />} />
         <Route path="/answer-q/:questionId" element={<AnswerQuestion />} />

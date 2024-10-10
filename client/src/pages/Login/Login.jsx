@@ -34,7 +34,7 @@ const Login = () => {
 
       localStorage.setItem('token', data.token);
       navigate('/');
-      console.log(data);
+      // console.log(data);
       setSuccess('logged in successfully');
     } catch (error) {
       // alert(error?.response?.data?.msg);
@@ -69,14 +69,10 @@ const Login = () => {
                 }}
               >
                 <span>Don't Have an Account?</span>
-                <Link to={'/register'} style={{ marginTop: '0px' }}>
+                <Link to="/register" style={{ marginTop: '0px' }}>
                   Create a new account
                 </Link>
               </div>
-
-              {/* <Link to={"/register"} className={classes.createAccountLink}>
-              Create a new account
-            </Link> */}
               <form onSubmit={handleSubmit}>
                 <div>
                   <span>email or username</span>
