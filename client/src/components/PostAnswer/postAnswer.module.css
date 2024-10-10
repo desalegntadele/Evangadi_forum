@@ -14,7 +14,7 @@ textarea{
     font-size: large;
 
 }
-button{
+.button{
     background-color:rgb(11,94,215);
     color:white;
     border:none;

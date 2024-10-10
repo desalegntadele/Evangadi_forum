@@ -27,10 +27,11 @@ const Header = () => {
 
   return (
     <Navbar
+      
       bg="white"
       expand="lg"
       sticky="top"
-      className="shadow-sm border-bottom">
+      className="shadow-sm border-bottom py-4">
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img src={logo} alt="logo" style={{ width: "170px" }} />
@@ -44,12 +45,9 @@ const Header = () => {
             <Nav.Link as={Link} to="/">
               How it Works
             </Nav.Link>
-            <Button
-              className="Btn"
-              variant="primary"
-              onClick={handleButtonClick}>
+            <button className="btn btn-primary px-5" onClick={handleButtonClick}>
               {isLoggedIn ? "Logout" : "Sign In"}
-            </Button>
+            </button>
           </Nav>
         </Navbar.Collapse>
       </Container>

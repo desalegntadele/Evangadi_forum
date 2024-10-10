@@ -50,7 +50,7 @@ const PostAnswer = ({ onAnswerPosted }) => {
           required
           placeholder="Your answer..."
         />
-        <button type="submit">Post Answer</button>
+        <button className="button" type="submit">Post Answer</button>
         {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
     </div>

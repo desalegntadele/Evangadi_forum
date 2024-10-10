@@ -47,7 +47,7 @@ const Register = () => {
         password: passValue,
       });
       // alert("register successfully.please login");
-      navigate('/login');
+      // navigate('/login');
     } catch (error) {
       // alert("something went wrong!");
       console.log(error.response);

@@ -3,9 +3,10 @@ body {
 }
 
 .both {
+    
     display: flex;
     width: 880px;
-    margin: auto;
+    margin: auto,;
 }
 
 .register {
@@ -13,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 40vh;
-    margin-top: 140px;
+    margin-top: 200px;
 }
 
 .para {
