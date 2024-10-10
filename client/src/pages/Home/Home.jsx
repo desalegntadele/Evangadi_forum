@@ -1,38 +1,41 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AppState } from '../../App';
-import axiosBase from '../../axiosConfig';
-import LayOut from '../../components/LayOut/LayOut';
-import Loading from '../../components/Loading/Loading';
-import QuestionList from '../../components/QuestionList/QuestionList';
-import './home.css';
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { AppState } from "../../App";
+import axiosBase from "../../axiosConfig";
+import LayOut from "../../components/LayOut/LayOut";
+import Loading from "../../components/Loading/Loading";
+import QuestionList from "../../components/QuestionList/QuestionList";
+import "./home.css";
 
 const Home = () => {
   const { user } = useContext(AppState);
-  const token = localStorage.getItem('token');
-  //   console.log(token);
-
   const [questions, setQuestions] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    (async () => {
+    const fetchQuestions = async () => {
       try {
-        setIsLoading(true);
-        const { data } = await axiosBase.get('/questions', {
+        const token = localStorage.getItem("token");
+        const response = await axiosBase.get("/questions", {
           headers: {
-            Authorization: 'Bearer ' + token,
+            Authorization: `Bearer ${token}`,
           },
         });
-        setIsLoading(false);
-        setQuestions(() => data.questions);
-      } catch (error) {
-        setIsLoading(true);
-
-        console.error(error.message);
+        setQuestions(response.data.questions);
+      } catch (err) {
+        console.error("Error fetching questions:", err);
+        setError(
+          "Failed to load questions. Error: " +
+            (err.response?.data?.msg || err.message)
+        );
+      } finally {
         setIsLoading(false);
       }
-    })();
-  }, [token]);
+    };
+
+    fetchQuestions();
+  }, []);
 
   return (
     <LayOut>
@@ -48,15 +51,28 @@ const Home = () => {
 
         {isLoading ? (
           <Loading />
+        ) : error ? (
+          <div>{error}</div>
         ) : (
           <div className="mt-4">
-            {questions.map((question, i) => (
-              <QuestionList question={question} key={i} />
-            ))}
+            {questions.length > 0 ? (
+              questions.map((question) => (
+                <Link
+                  to={`/question/${question.question_id}`}
+                  key={question.question_id}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <QuestionList question={question} />
+                </Link>
+              ))
+            ) : (
+              <p>No questions found.</p>
+            )}
           </div>
         )}
       </section>
     </LayOut>
   );
 };
+
 export default Home;
