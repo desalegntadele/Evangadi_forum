@@ -17,12 +17,12 @@ const Home = () => {
     const fetchQuestions = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axiosBase.get('/questions', {
+        const { data } = await axiosBase.get('/questions', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setQuestions(response.data.questions);
+        setQuestions(data.questions);
       } catch (err) {
         console.error('Error fetching questions:', err);
         setError(
@@ -61,14 +61,8 @@ const Home = () => {
             ) : (
               <div className="mt-4">
                 {questions.length > 0 ? (
-                  questions.map(question => (
-                    <Link
-                      to={`/question/${question.question_id}`}
-                      key={question.question_id}
-                      style={{ textDecoration: 'none', color: 'inherit' }}
-                    >
-                      <QuestionList question={question} />
-                    </Link>
+                  questions?.map(question => (
+                    <QuestionList question={question} />
                   ))
                 ) : (
                   <p>No questions found.</p>

@@ -12,12 +12,12 @@ const { StatusCodes } = require('http-status-codes');
 const register = async function (req, res) {
   const { username, first_name, last_name, email, password } = req?.body;
   const flag = !username || !first_name || !last_name || !email || !password;
-  console.log("Received body:", req.body); 
+  console.log('Received body:(', req.body);
   //Guard value
   if (flag)
     return res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ msg: 'Please enter a provide value:)' });
+      .json({ msg: 'Please enter a provide value:(' });
 
   //database query
   try {
@@ -30,13 +30,15 @@ const register = async function (req, res) {
     if (isExist)
       return res
         .status(StatusCodes.BAD_REQUEST)
-        .json({ msg: `User already registered: check your username or email` });
+        .json({
+          msg: `User already registered: check your username or email:(`,
+        });
 
     //Guard password length
     if (password.length < 8)
       return res
         .status(StatusCodes.BAD_REQUEST)
-        .json({ msg: `Password must be at least 8 characters` });
+        .json({ msg: `Password must be at least 8 characters:(` });
 
     //encrypt password
     const salt = await bcrypt.genSalt(10);
@@ -80,8 +82,8 @@ const login = async function (req, res) {
   try {
     //user selection
     const [user] = await connection.query(
-      `SELECT username, password, user_id FROM users WHERE email = ?`,
-      [email]
+      `SELECT username, password, user_id FROM users WHERE email = ? OR username = ?`,
+      [email, email]
     );
     const isExist = user?.length > 0;
 
@@ -105,7 +107,9 @@ const login = async function (req, res) {
     const token = jwt.sign({ username, user_id }, process.env.JWT_SECRET, {
       expiresIn: '1d',
     });
-    res.status(StatusCodes.OK).json({ msg: 'user login successful', token, username });
+    res
+      .status(StatusCodes.OK)
+      .json({ msg: 'user login successful', token, username });
   } catch (err) {
     console.error(err.message);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({

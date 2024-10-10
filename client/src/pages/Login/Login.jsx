@@ -79,8 +79,8 @@ const Login = () => {
             </Link> */}
               <form onSubmit={handleSubmit}>
                 <div>
-                  <span>email </span>
-                  <input ref={emailDom} type="email" placeholder="email" />
+                  <span>email or username</span>
+                  <input ref={emailDom} type="text" placeholder="email" />
                 </div>
                 <br />
                 <div>

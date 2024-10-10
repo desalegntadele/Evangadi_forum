@@ -5,7 +5,7 @@ const uuidv4 = require('uuid').v4;
 // Task 6: Get answers for a question
 const answerForQuestion = async function (req, res) {
   const { question_id } = req.params; // Get the question_id from request parameters
-  console.log('Received question_id:', question_id); // Log received question_id for debugging
+  //   console.log('Received question_id:', question_id); // Log received question_id for debugging
 
   try {
     // Query the database to get answers for the specified question along with usernames
