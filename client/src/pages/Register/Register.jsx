@@ -46,8 +46,10 @@ const Register = () => {
         email: emailValue,
         password: passValue,
       });
+      
       setSuccess('Register successfully. Please login');
       navigate('/login'); // Redirect to login page after registration
+
     } catch (error) {
       setError('Something went wrong!');
     }
