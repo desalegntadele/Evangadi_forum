@@ -5,6 +5,7 @@ import axios from './axiosConfig';
 import AskQuestion from './pages/AskQuestion/AskQuestion';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
+import QuestionPage from './pages/Question/Question';
 import Register from './pages/Register/Register';
 // import AskQuestion from "./pages/AskQuestions/AskQuestion";
 // import AnswerQuestion from "./pages/AnswerQuestion";
@@ -41,7 +42,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-
+        <Route path="questions/:id" element={<QuestionPage />} />
         <Route path="ask-question" element={<AskQuestion />} />
         {/* <Route path="dashboard" element={<DashBoard />} /> */}
         {/* <Route path="ask-question" element={<AskQuestion />} />
