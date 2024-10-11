@@ -288,9 +288,8 @@
 //   );
 // };
 
-import React, { useContext, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppState } from '../../App';
 import axios from '../../axiosConfig';
 import LayOut from '../../components/LayOut/LayOut';
 import Loading from '../../components/Loading/Loading';
@@ -298,7 +297,7 @@ import './askquestion.css';
 
 const AskQuestion = () => {
   const navigate = useNavigate();
-  const { user } = useContext(AppState);
+
   const token = localStorage.getItem('token');
 
   const questionDom = useRef(null);

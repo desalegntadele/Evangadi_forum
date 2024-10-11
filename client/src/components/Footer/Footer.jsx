@@ -1,9 +1,9 @@
-import React from "react";
-import "./footer.css";
-import logo from "../../assets/images/evangadi-logo-footer.png";
-import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import React from 'react';
+import logo from '../../assets/images/evangadi-logo-footer.png';
+import './footer.css';
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="Footer_inner_container">
         <div className="Footer_inner_left">
           <div>
-            <img src={logo} />
+            <img src={logo} alt="Evangadi Logo" />
           </div>
           <div className="Footer_inner_left_icon">
             <FacebookOutlinedIcon />
