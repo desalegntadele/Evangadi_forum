@@ -1,5 +1,3 @@
-
-
 // import React, { useEffect, useState, useRef, useContext } from "react";
 // import { useNavigate } from "react-router-dom";
 // // import Header from "../Header/Header";
@@ -24,7 +22,6 @@
 //     const descriptionValue = descriptionDom.current.value;
 //     const tagValue = tagDom.current.value;
 //     console.log(questionValue);
-   
 
 //     if (!questionValue ||!descriptionValue ||!tagValue
 //     ) {
@@ -36,7 +33,7 @@
 //       const response = await axios.post(
 //         "/questions",
 //         {
-        
+
 //           question: questionValue,
 //           description: descriptionValue,
 //           tag: tagValue,
@@ -56,7 +53,7 @@
 //         navigate("/");
 //         window.location.reload();
 //       }, 2000);
-      
+
 //     } catch (error) {
 //       alert("something went wrong");
 //       console.log(error.response);
@@ -143,8 +140,6 @@
 
 // export default AskQuestion;
 
-
-
 // import React, { useState, useRef, useContext } from "react";
 // import { useNavigate } from "react-router-dom";
 // import axios from "../../axiosConfig";
@@ -209,7 +204,7 @@
 //         navigate("/"); // Navigate back to the homepage
 //         window.location.reload(); // Optionally reload the page
 //       }, 4000);
-      
+
 //     } catch (error) {
 //       alert("Something went wrong");
 //       console.log(error.response);
@@ -292,26 +287,26 @@
 //     </LayOut>
 //   );
 // };
-import React, { useState, useRef, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "../../axiosConfig";
-import { AppState } from "../../App";
-import LayOut from "../../components/LayOut/LayOut";
-import { ClipLoader } from "react-spinners"; // Import the spinner
-import "./askquestion.css"
+import React, { useContext, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners'; // Import the spinner
+import { AppState } from '../../App';
+import axios from '../../axiosConfig';
+import LayOut from '../../components/LayOut/LayOut';
+import './askquestion.css';
 
 const AskQuestion = () => {
   const navigate = useNavigate();
   const { user } = useContext(AppState);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   const questionDom = useRef(null);
   const descriptionDom = useRef(null);
   const tagDom = useRef(null);
 
   const [loading, setLoading] = useState(false); // Loading state
-  const [successMessage, setSuccessMessage] = useState(""); // Success message state
-  const [errorMessage, setErrorMessage] = useState(""); // Error message state
+  const [successMessage, setSuccessMessage] = useState(''); // Success message state
+  const [errorMessage, setErrorMessage] = useState(''); // Error message state
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -320,17 +315,17 @@ const AskQuestion = () => {
     const tagValue = tagDom.current.value;
 
     // Reset error message on submit
-    setErrorMessage("");
+    setErrorMessage('');
 
     if (!questionValue || !descriptionValue || !tagValue) {
-      setErrorMessage("Please provide all required fields");
+      setErrorMessage('Please provide all required fields');
       return;
     }
 
     try {
       // Post the question
       const response = await axios.post(
-        "/questions",
+        '/questions',
         {
           question: questionValue,
           description: descriptionValue,
@@ -338,33 +333,33 @@ const AskQuestion = () => {
         },
         {
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: 'Bearer ' + token,
           },
         }
       );
 
       // Clear form inputs
-      questionDom.current.value = "";
-      descriptionDom.current.value = "";
-      tagDom.current.value = "";
+      questionDom.current.value = '';
+      descriptionDom.current.value = '';
+      tagDom.current.value = '';
 
-      console.log(response, "response");
+      console.log(response, 'response');
 
       // Set success message and loading
       setSuccessMessage(
-        "Your Question Has Been Successfully Posted. Redirecting to Home Page...."
+        'Your Question Has Been Successfully Posted. Redirecting to Home Page....'
       );
       setLoading(true); // Start loading to display spinner
 
       // Wait for 4 seconds before navigating
       setTimeout(() => {
-        setLoading(false); 
-        setSuccessMessage(""); 
-        navigate("/"); // Navigate back to the homepage
+        setLoading(false);
+        setSuccessMessage('');
+        navigate('/'); // Navigate back to the homepage
         window.location.reload(); // Optionally reload the page
       }, 4000);
     } catch (error) {
-      alert("Something went wrong");
+      alert('Something went wrong');
       console.log(error.response);
     }
   }
@@ -402,7 +397,7 @@ const AskQuestion = () => {
               {successMessage}
               <div
                 className="d-flex justify-content-center align-items-center"
-                style={{ height: "50px" }}
+                style={{ height: '50px' }}
               >
                 <ClipLoader color="#007bff" size={30} />
               </div>
@@ -413,7 +408,7 @@ const AskQuestion = () => {
             <form onSubmit={handleSubmit}>
               <div className="mb-2">
                 <input
-                  type="text
+                  type="text"
                   placeholder="Question title"
                   className="form-control"
                   ref={questionDom}
