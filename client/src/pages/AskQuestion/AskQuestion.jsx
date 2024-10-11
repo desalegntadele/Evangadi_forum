@@ -413,18 +413,20 @@ const AskQuestion = () => {
             <form onSubmit={handleSubmit}>
               <div className="mb-2">
                 <input
-                  type="text"
-                  placeholder="Question Title"
+                  type="text
+                  placeholder="Question title"
                   className="form-control"
                   ref={questionDom}
                 />
               </div>
+              <br />
+              <br />
 
               <div>
                 <textarea
                   className="mt-4 form-control"
                   rows="3"
-                  placeholder="Question Description"
+                  placeholder="Question Detail ..."
                   ref={descriptionDom}
                 ></textarea>
               </div>
