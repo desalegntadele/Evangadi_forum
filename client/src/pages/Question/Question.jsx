@@ -75,14 +75,14 @@ function QuestionPage() {
         {question && <SingleQuestion question={question} />}
         {/* Add PostAnswer component */}
         <div className={classes.container}>
-          <div className={classes.scrollableContainer}>
+          <div>
             {' '}
             {/* Scrollable container */}
             {answers.length > 0 ? (
               answers.map((answer, index) => (
                 <div
                   key={answer.answer_id}
-                  className={classes.answer__container}
+                  className={`${classes.answer__container} ${classes.scrollableContainer}`}
                 >
                   <div className={classes.profile}>
                     {/* Circle background for the SVG */}

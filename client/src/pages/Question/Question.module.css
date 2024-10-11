@@ -47,7 +47,7 @@ body {
 /* Styling for the username under the SVG */
 .profile p {
   margin: 8px 0 0 0; /* Space above username */
-  font-size: 1.0em;
+  font-size: 1em;
 }
 
 /* Styling for the answer text */
@@ -60,6 +60,6 @@ body {
 .answerDivider {
   margin: 10px 0; /* Space above and below the line */
   border: 0; /* Remove default border */
-  color:green;
+  color: green;
   border-top: 1px solid rgba(0, 0, 0, 0.1); /* Light horizontal line */
 }
