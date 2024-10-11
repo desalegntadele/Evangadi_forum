@@ -293,6 +293,7 @@ import { ClipLoader } from 'react-spinners'; // Import the spinner
 import { AppState } from '../../App';
 import axios from '../../axiosConfig';
 import LayOut from '../../components/LayOut/LayOut';
+import Loading from '../../components/Loading/Loading';
 import './askquestion.css';
 
 const AskQuestion = () => {
@@ -324,6 +325,7 @@ const AskQuestion = () => {
 
     try {
       // Post the question
+      setLoading(true);
       const response = await axios.post(
         '/questions',
         {
@@ -349,7 +351,7 @@ const AskQuestion = () => {
       setSuccessMessage(
         'Your Question Has Been Successfully Posted. Redirecting to Home Page....'
       );
-      setLoading(true); // Start loading to display spinner
+      // Start loading to display spinner
 
       // Wait for 4 seconds before navigating
       setTimeout(() => {
@@ -359,10 +361,14 @@ const AskQuestion = () => {
         window.location.reload(); // Optionally reload the page
       }, 4000);
     } catch (error) {
+      setLoading(true);
       alert('Something went wrong');
       console.log(error.response);
+      setLoading(false);
     }
   }
+
+  if (loading) return <Loading />;
 
   return (
     <LayOut>
