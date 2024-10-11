@@ -1,9 +1,9 @@
-import { useContext, useState, useEffect } from "react";
-import "./header.css";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/images/evangadi-logo-black.png";
-import { AppState } from "../../App";
-import { Navbar, Nav, Button, Container } from "react-bootstrap";
+import { useContext, useEffect, useState } from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import { AppState } from '../../App';
+import logo from '../../assets/images/evangadi-logo-black.png';
+import './header.css';
 
 const Header = () => {
   const { user, setUser } = useContext(AppState); // Make sure you have setUser available
@@ -11,30 +11,35 @@ const Header = () => {
   const navigate = useNavigate(); // Use useNavigate for navigation
 
   useEffect(() => {
-    setIsLoggedIn(!!user); // Set true or false based on user existence
+    setIsLoggedIn(user); // Set true or false based on user existence
   }, [user]);
 
-  const handleButtonClick = () => {
+  const handleLogout = () => {
     if (isLoggedIn) {
-      // If the user is logged in, handle logout
+      // Remove the token from localStorage
+      localStorage.removeItem('authToken'); // Replace 'authToken' with the key used to store the token
+
+      // Optionally, clear all localStorage
+      localStorage.clear();
+
       setUser(null); // Clear user context or state
-      navigate("/"); // Navigate to home page after logout
+      navigate('/'); // Navigate to home page after logout
     } else {
       // If the user is not logged in, navigate to the register page
-      navigate("/register");
+      navigate('/');
     }
   };
 
   return (
     <Navbar
-      
       bg="white"
       expand="lg"
       sticky="top"
-      className="shadow-sm border-bottom py-4">
+      className="shadow-sm border-bottom py-4"
+    >
       <Container>
-        <Navbar.Brand as={Link} to="/">
-          <img src={logo} alt="logo" style={{ width: "170px" }} />
+        <Navbar.Brand as={Link} to="/home">
+          <img src={logo} alt="logo" style={{ width: '170px' }} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
@@ -45,8 +50,11 @@ const Header = () => {
             <Nav.Link as={Link} to="/">
               How it Works
             </Nav.Link>
-            <button className="btn btn-primary px-5" onClick={handleButtonClick}>
-              {isLoggedIn ? "Logout" : "Sign In"}
+            <button
+              className="btn btn-primary px-5 fs-4"
+              onClick={handleLogout}
+            >
+              {isLoggedIn ? 'Logout' : 'Sign In'}
             </button>
           </Nav>
         </Navbar.Collapse>
