@@ -8,14 +8,14 @@
   padding-top: 100px;
 }
 .auth-wrapper {
-  overflow: hidden; /* Ensure content doesn't spill outside */
+  overflow-x: hidden; /* Ensure content doesn't spill outside */
   position: relative;
 }
 
 .form-wrapper {
   position: relative;
   width: 100%;
-  overflow: hidden; /* Hide content that slides out of view */
+  overflow-x: hidden; /* Hide content that slides out of view */
   transition: all 0.6s ease-in-out; /* Smooth height transition */
 }
 

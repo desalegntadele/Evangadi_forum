@@ -16,8 +16,8 @@ function Auth() {
   // Adjust height based on active form
   useEffect(() => {
     const currentHeight = isLogin
-      ? loginRef.current.offsetHeight
-      : registerRef.current.offsetHeight;
+      ? loginRef.current.offsetHeight + 10
+      : registerRef.current.offsetHeight + 10;
     formWrapperRef.current.style.height = `${currentHeight}px`;
   }, [isLogin]);
 
@@ -31,7 +31,7 @@ function Auth() {
     <LayOut>
       <div className="bg d-flex justify-content-center align-items-center">
         <section className="container d-flex gap-5 flex-column flex-md-row">
-          <div className="shadow-lg col-12 col-md-6 bg-light p-5 rounded auth-wrapper">
+          <div className="shadow-lg col-12 col-md-6 bg-light rounded auth-wrapper">
             <div className="form-wrapper" ref={formWrapperRef}>
               <div
                 className={`form login-form ${

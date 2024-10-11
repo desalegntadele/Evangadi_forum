@@ -287,9 +287,9 @@
 //     </LayOut>
 //   );
 // };
+
 import React, { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ClipLoader } from 'react-spinners'; // Import the spinner
 import { AppState } from '../../App';
 import axios from '../../axiosConfig';
 import LayOut from '../../components/LayOut/LayOut';
@@ -325,7 +325,6 @@ const AskQuestion = () => {
 
     try {
       // Post the question
-      setLoading(true);
       const response = await axios.post(
         '/questions',
         {
@@ -351,25 +350,20 @@ const AskQuestion = () => {
       setSuccessMessage(
         'Your Question Has Been Successfully Posted. Redirecting to Home Page....'
       );
-      // Start loading to display spinner
+      setLoading(true); // Start loading to display spinner
 
       // Wait for 4 seconds before navigating
       setTimeout(() => {
         setLoading(false);
         setSuccessMessage('');
-        navigate('/'); // Navigate back to the homepage
+        navigate('/home'); // Navigate back to the homepage
         window.location.reload(); // Optionally reload the page
       }, 4000);
     } catch (error) {
-      setLoading(true);
       alert('Something went wrong');
       console.log(error.response);
-      setLoading(false);
     }
   }
-
-  if (loading) return <Loading />;
-
   return (
     <LayOut>
       <section>
@@ -405,27 +399,25 @@ const AskQuestion = () => {
                 className="d-flex justify-content-center align-items-center"
                 style={{ height: '50px' }}
               >
-                <ClipLoader color="#007bff" size={30} />
+                <Loading />
               </div>
             </div>
           )}
 
           <div className="container custom-bg">
             <form onSubmit={handleSubmit}>
-              <div className="mb-2">
+              <div className="my-3 ">
                 <input
                   type="text"
                   placeholder="Question title"
-                  className="form-control"
+                  className="form-control fs-3 p-4"
                   ref={questionDom}
                 />
               </div>
-              <br />
-              <br />
 
               <div>
                 <textarea
-                  className="mt-4 form-control"
+                  className="mt-4 p-4 fs-3 form-control"
                   rows="3"
                   placeholder="Question Detail ..."
                   ref={descriptionDom}
@@ -436,14 +428,14 @@ const AskQuestion = () => {
                 <input
                   type="text"
                   placeholder="Tag"
-                  className="form-control mt-2"
+                  className="form-control mt-2 fs-3 p-3"
                   ref={tagDom}
                 />
               </div>
 
               <div className="mt-2">
                 <button
-                  className="btn btn-primary  px-5 action_btn"
+                  className="btn btn-primary  p-4 fs-3  action_btn"
                   type="submit"
                 >
                   Post Question

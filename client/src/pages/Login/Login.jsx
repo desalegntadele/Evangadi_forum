@@ -55,7 +55,7 @@ const Login = ({ onClick, className }) => {
   if (isLoading) return <Loading />;
 
   return (
-    <section className={`login px-5 py-3 ${className}`}>
+    <section className={`login px-5 py-2 ${className}`}>
       <div className="login_container text-center">
         <h2>Login to your account</h2>
         {error && (
