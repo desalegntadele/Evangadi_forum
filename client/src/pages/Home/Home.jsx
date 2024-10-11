@@ -53,7 +53,7 @@ const Home = () => {
                 </Link>
               </div>
               <div>
-                <h4 className="fs-2">Welcome, {user.username}!</h4>
+                <h4 className="fs-2">Welcome, {user?.username}!</h4>
               </div>
             </header>
             {error ? (
@@ -61,9 +61,10 @@ const Home = () => {
             ) : (
               <div className="mt-4">
                 {questions.length > 0 ? (
-                  questions?.map(question => (
-                    <QuestionList question={question} />
-                  ))
+                  questions
+                    .slice()
+                    .reverse()
+                    .map(question => <QuestionList question={question} />)
                 ) : (
                   <p>No questions found.</p>
                 )}
