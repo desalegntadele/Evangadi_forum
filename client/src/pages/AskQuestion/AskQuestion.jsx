@@ -298,6 +298,7 @@ import axios from "../../axiosConfig";
 import { AppState } from "../../App";
 import LayOut from "../../components/LayOut/LayOut";
 import { ClipLoader } from "react-spinners"; // Import the spinner
+import "./askquestion.css"
 
 const AskQuestion = () => {
   const navigate = useNavigate();
@@ -371,12 +372,12 @@ const AskQuestion = () => {
   return (
     <LayOut>
       <section>
-        <div className="container d-flex flex-column align-items-center mt-4 ">
-          <div className="justify-content-around ">
-            <h2>Steps to Write a Good Question</h2>
+        <div className="container d-flex flex-column mt-4 ">
+          <div className=" arrow-list justify-content-around mb-4 ">
+            <h1>Steps to Write a Good Question</h1>
           </div>
           <div>
-            <ul>
+            <ul className="arrow-list">
               <li>Summarize your problem in a one-line-title.</li>
               <li>Describe your problem in more detail.</li>
               <li>Describe what you tried and what you expected to happen.</li>
@@ -385,9 +386,9 @@ const AskQuestion = () => {
           </div>
         </div>
 
-        <div className="d-flex flex-column align-items-center container shadow-sm p-3 mb-5 bg-body rounded">
-          <div className="mt-5 pt-4">
-            <h3>Ask a Public Question</h3>
+        <div className="d-flex flex-column align-items-center shadow-sm p-3 mb-5 rounded ">
+          <div className="fw-b mt-5 pt-4">
+            <h1>Ask a Public Question</h1>
           </div>
 
           {/* Display error message if it exists */}
@@ -408,12 +409,12 @@ const AskQuestion = () => {
             </div>
           )}
 
-          <div className="container">
+          <div className="container custom-bg">
             <form onSubmit={handleSubmit}>
               <div className="mb-2">
                 <input
                   type="text"
-                  placeholder="Your Question Here"
+                  placeholder="Question Title"
                   className="form-control"
                   ref={questionDom}
                 />
@@ -421,7 +422,7 @@ const AskQuestion = () => {
 
               <div>
                 <textarea
-                  className="form-control p-4"
+                  className="mt-4 form-control"
                   rows="3"
                   placeholder="Question Description"
                   ref={descriptionDom}
@@ -439,10 +440,10 @@ const AskQuestion = () => {
 
               <div className="mt-2">
                 <button
-                  className="btn btn-primary fw-bold px-5 action_btn"
+                  className="btn btn-primary  px-5 action_btn"
                   type="submit"
                 >
-                  Post Your Question
+                  Post Question
                 </button>
               </div>
             </form>
