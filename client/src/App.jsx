@@ -40,7 +40,7 @@ function App() {
       checkUser();
     }
   }, [navigate, token]);
-
+  
   return (
     <AppState.Provider value={{ user, setUser }}>
       <Routes>
