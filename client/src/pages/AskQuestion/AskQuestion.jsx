@@ -413,17 +413,19 @@ const AskQuestion = () => {
               <div className="mb-2">
                 <input
                   type="text"
-                  placeholder="Your Question Here"
+                  placeholder="Question title"
                   className="form-control"
                   ref={questionDom}
                 />
               </div>
+              <br />
+              <br />
 
               <div>
                 <textarea
                   className="form-control p-4"
                   rows="3"
-                  placeholder="Question Description"
+                  placeholder="Question Detail ..."
                   ref={descriptionDom}
                 ></textarea>
               </div>
