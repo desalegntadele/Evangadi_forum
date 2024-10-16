@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="Footer_inner_container">
         <div className="Footer_inner_left">
           <div>
-            <img src={logo} alt="Evangadi Logo" />
+          <img src={logo} alt="Evangadi Logo" />
           </div>
           <div className="Footer_inner_left_icon">
             <FacebookOutlinedIcon />
